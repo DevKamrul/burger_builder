@@ -5,8 +5,10 @@ import Header from './Header/Header';
 const Main = () => {
     return (
         <div>
-            <Header></Header>
-            <BurgerBuilder></BurgerBuilder>
+            <Header />
+            <div className="container">
+                <BurgerBuilder />
+            </div>
         </div>
     )
 }
