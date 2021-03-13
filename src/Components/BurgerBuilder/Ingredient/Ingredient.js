@@ -17,7 +17,7 @@ const Ingredient = (props) => {
         case 'bread-bottom':
             ingredient = <div><img src={BreadBotom} alt="bread-bottom" /></div>
             break;
-        case 'meat':
+        case 'Meat':
             ingredient = <div><img src={Meat} alt="bread-Meat" /></div>
             break;
         case 'Cheese':
@@ -30,7 +30,6 @@ const Ingredient = (props) => {
             ingredient = null
 
     }
-
 
     return (
         <div className="Ingredient">
