@@ -6,8 +6,9 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink
 } from 'reactstrap';
+
+import {NavLink} from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -19,7 +20,10 @@ const Header = () => {
                 <NavbarBrand href="/" className="mr-auto ml-md-5 Brand"> <img src={Logo} alt="logo" width="100px" /></NavbarBrand>
                 <Nav className="mr-md-5">
                     <NavItem>
-                        <NavLink href="#" className="NavLink">Home</NavLink>
+                        <NavLink exact to="/" className="NavLink">BurgerBuilder</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
                     </NavItem>
                 </Nav>
             </Navbar>
