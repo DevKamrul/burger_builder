@@ -8,7 +8,6 @@ const Burger = (props) => {
         return amountArr.map(_ => {
             return <Ingredient type={item.type} key={Math.random()} />
         })
-
     })
 
     return (
