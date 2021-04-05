@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fatchorders } from '../../Redux/actionCreators'
+import { fatchorders } from '../../Redux/actionCreators';
+import Order from '../Orders/order/order';
+import Spiner from '../Spinner/spinner';
 
 const mapStateToProps = state => {
     return {
@@ -26,9 +28,12 @@ class Orders extends Component {
     }
 
     render() {
+        let orders = this.props.order.map(order => {
+            return <Order order={order} key={order.id} />
+        })
         return (
             <div>
-                <p>Orders</p>
+                <p>{this.props.orderLoading ? <Spiner /> : orders}</p>
             </div>
         )
     }
