@@ -8,7 +8,7 @@ const mapStateToProps = state => {
     return {
         order: state.order,
         orderLoading: state.orderLoading,
-        orderError: state.ordererr,
+        orderError: state.orderErr,
     }
 }
 
@@ -28,9 +28,30 @@ class Orders extends Component {
     }
 
     render() {
-        let orders = this.props.order.map(order => {
-            return <Order order={order} key={order.id} />
-        })
+        let orders = null;
+        if (this.props.orderError) {
+            orders = <p style={{
+                border: "1px solid grey",
+                borderRadius: "5px",
+                padding: "5px",
+                marginRight: "10px"
+            }}>Sorry Order Faild</p>
+        }
+        else {
+            if (this.props.order.length === 0) {
+                orders = <p style={{
+                    border: "1px solid grey",
+                    borderRadius: "5px",
+                    padding: "5px",
+                    marginRight: "10px",
+                }}>There have no order</p>
+            }
+            else {
+                orders = this.props.order.map(order => {
+                    return <Order order={order} key={order.id} />
+                })
+            }
+        }
         return (
             <div>
                 <p>{this.props.orderLoading ? <Spiner /> : orders}</p>

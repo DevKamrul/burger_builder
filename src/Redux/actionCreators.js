@@ -46,4 +46,7 @@ export const fatchorders = () => dispatch => {
         .then(response => {
             dispatch(loadOrders(response.data));
         })
+        .catch(err => {
+            dispatch(orderLoadFaild());
+        })
 }

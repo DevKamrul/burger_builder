@@ -14,7 +14,7 @@ const INITIAL_STATE = {
     ],
     order: [],
     orderLoading: true,
-    ordererr: false,
+    orderErr: false,
     totalPrice: 80,
     purchesable: false,
 }
@@ -79,6 +79,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
                 order: orders,
                 orderLoading: false,
 
+            }
+        case actiontype.ORDER_LOAD_FAILD:
+            return {
+                ...state,
+                orderErr: true,
+                orderLoading: false,
             }
         default:
             return state;
