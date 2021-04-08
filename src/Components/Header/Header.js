@@ -8,7 +8,7 @@ import {
     NavItem,
 } from 'reactstrap';
 
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -24,6 +24,9 @@ const Header = () => {
                     </NavItem>
                     <NavItem>
                         <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink exact to="/login" className="NavLink">login</NavLink>
                     </NavItem>
                 </Nav>
             </Navbar>
