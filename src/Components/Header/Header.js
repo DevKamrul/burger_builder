@@ -9,8 +9,37 @@ import {
 } from 'reactstrap';
 
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Header = () => {
+const mapStateToProps = state => {
+    return {
+        token: state.token,
+
+    }
+}
+
+const Header = (props) => {
+    let links = null;
+    if (props.token === null) {
+        links = (<Nav className="mr-md-5">
+            <NavItem>
+                <NavLink exact to="/login" className="NavLink">login</NavLink>
+            </NavItem>
+        </Nav>
+        )
+    }
+    else {
+        links = (
+            <Nav className="mr-md-5">
+                <NavItem>
+                    <NavLink exact to="/" className="NavLink">BurgerBuilder</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
+                </NavItem>
+            </Nav>
+        )
+    }
     return (
         <div className="Navigation">
             <Navbar style={{
@@ -18,20 +47,11 @@ const Header = () => {
                 Height: "70px"
             }}>
                 <NavbarBrand href="/" className="mr-auto ml-md-5 Brand"> <img src={Logo} alt="logo" width="100px" /></NavbarBrand>
-                <Nav className="mr-md-5">
-                    <NavItem>
-                        <NavLink exact to="/" className="NavLink">BurgerBuilder</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink exact to="/login" className="NavLink">login</NavLink>
-                    </NavItem>
-                </Nav>
+                {links}
             </Navbar>
         </div>
     )
 }
 
-export default Header
+export default connect(mapStateToProps)(Header);
+

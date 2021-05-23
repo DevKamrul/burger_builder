@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import { Formik } from 'formik'
+import { Formik } from 'formik';
+import { connect } from 'react-redux';
+import { auth } from '../../Redux/authActionCrators';
 
-export default class Auth extends Component {
+
+const mapDispatchToProps = dispatch => {
+    return {
+        auth: (email, password, mode) => dispatch(auth(email, password, mode))
+    }
+}
+
+class Auth extends Component {
     state = {
         mode: "Sign Up"
     }
@@ -23,7 +32,7 @@ export default class Auth extends Component {
                     }
                     onSubmit={
                         (values) => {
-                            console.log(values)
+                            this.props.auth(values.email, values.password, this.state.mode)
                         }
                     }
                     validate={(values) => {
@@ -40,7 +49,7 @@ export default class Auth extends Component {
                         else if (values.password.length < 8) {
                             errors.password = "Min 8 Carecter required ";
                         }
-                        if(this.state.mode === "Sign Up"){
+                        if (this.state.mode === "Sign Up") {
                             if (!values.passwordConfirm) {
                                 errors.passwordConfirm = "Required";
                             }
@@ -90,4 +99,6 @@ export default class Auth extends Component {
         )
     }
 }
+
+export default connect(null, mapDispatchToProps)(Auth);
 
