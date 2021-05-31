@@ -101,12 +101,18 @@ export const reducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 token: null,
+                authFaildMsg: null,
                 userId: null,
             }
         case actiontype.AUTH_LOADING:
             return {
                 ...state,
                 authLoading: action.payload,
+            }
+        case actiontype.AUTH_FAILED:
+            return {
+                ...state,
+                authFaildMsg: action.payload,
             }
         default:
             return state;

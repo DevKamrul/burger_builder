@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { auth } from '../../Redux/authActionCrators';
 import Spiner from '../Spinner/spinner';
+import { Alert } from 'reactstrap';
 
 
 const mapDispatchToProps = dispatch => {
@@ -28,6 +29,10 @@ class Auth extends Component {
         })
     }
     render() {
+        let err = null;
+        if (this.props.authFaildMsg!==null){
+            err = <Alert color = "danger" >{this.props.authFaildMsg}</Alert>
+        }
         let form = null;
         if (this.props.authLoading) {
             form = <Spiner />
@@ -109,6 +114,7 @@ class Auth extends Component {
         }
         return (
             <div>
+                {err}
                 {form}
             </div>
         )
