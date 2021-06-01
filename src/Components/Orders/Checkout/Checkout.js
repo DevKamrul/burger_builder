@@ -10,6 +10,8 @@ const mapStateToProps = (state) => {
         ingredient: state.ingredient,
         totalPrice: state.totalPrice,
         purchasable: state.purchasable,
+        userId: state.userId,
+        token: state.token,
     }
 }
 
@@ -52,8 +54,10 @@ class Checkout extends Component {
             Price: this.props.totalPrice,
             customer: this.state.values,
             orderTime: new Date(),
+            userId: this.props.userId,
         }
-        axios.post("https://burger-builder-app-cbe43-default-rtdb.firebaseio.com/orders.json", order)
+        
+        axios.post("https://burger-builder-app-cbe43-default-rtdb.firebaseio.com/orders.json?auth=" + this.props.token, order)
             .then(Response => {
                 if (Response.status === 200) {
                     this.setState({

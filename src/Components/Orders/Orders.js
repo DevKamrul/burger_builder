@@ -9,24 +9,21 @@ const mapStateToProps = state => {
         order: state.order,
         orderLoading: state.orderLoading,
         orderError: state.orderErr,
+        token: state.token,
+        userId: state.userId,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fatchorders: () => dispatch(fatchorders()),
+        fatchorders: (token, userId) => dispatch(fatchorders(token, userId)),
     }
 }
 
 class Orders extends Component {
     componentDidMount() {
-        this.props.fatchorders();
+        this.props.fatchorders(this.props.token, this.props.userId);
     }
-
-    componentDidUpdate() {
-        console.log(this.props)
-    }
-
     render() {
         let orders = null;
         if (this.props.orderError) {

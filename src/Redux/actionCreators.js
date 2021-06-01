@@ -41,8 +41,9 @@ export const orderLoadFaild = () => {
     }
 }
 
-export const fatchorders = () => dispatch => {
-    axios.get("https://burger-builder-app-cbe43-default-rtdb.firebaseio.com/orders.json")
+export const fatchorders = (token, userId) => dispatch => {
+    const queryParam = '&orderBy="userId"&equalTo="' + userId + '"';
+    axios.get('https://burger-builder-app-cbe43-default-rtdb.firebaseio.com/orders.json?auth=' + token + queryParam)
         .then(response => {
             dispatch(loadOrders(response.data));
         })
